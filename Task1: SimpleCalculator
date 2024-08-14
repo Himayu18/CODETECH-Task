@@ -1,33 +1,297 @@
-import java.util.Scanner;
-public class SimpleCalculator {
+import javax.swing.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.*;
+
+public class Calculator {
+
+    static JFrame frame;
+    static work w = new work();
+    static Container c;
+    static JTextArea text;
+    static Button b1, b2, b3, b4, b5, b6, b7, b8, b9, b0, bclear, badd, bdiff, bmul, bdiv, beq;
+
     public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-        String [] Operators = {"(1) Addition","(2) Subtraction","(3) Multiplication","(4) Division"};
-        for(String x:Operators){
-            System.out.println(x);
-        }
-        
-        int num1 = sc.nextInt();
-        
-        System.out.print("Enter the operator no: ");
-        int operator = sc.nextInt();
-        int num2 = sc.nextInt();
-        sc.close();
-        switch(operator){
-            case 1:
-            System.out.print(num1+" + "+num2+" = "+(num1+num2));
-            break;
-            case 2:
-            System.out.print(num1+" - "+num2+" = "+(num1-num2));
-            break;
-            case 3:
-            System.out.print(num1+" x "+num2+" = "+(num1/num2));
-            break;
-            case 4:
-            System.out.print(num1+" / "+num2+" = "+(num1+num2));
-            break;
-        }
-        
-        
+
+        ImageIcon icon = new ImageIcon("calc1.jpg");
+        frame = new JFrame("Calculator");
+
+        frame.setBounds(500, 100, 950, 650);
+        frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        frame.setIconImage(icon.getImage());
+
+        c = frame.getContentPane();
+        c.setLayout(null);
+        text = new JTextArea();
+        text.setBounds(500, 100, 300, 40);
+        text.setFont(new Font("Roman", Font.BOLD, 25));
+        c.add(text);
+
+        b1 = new Button("1");
+        b2 = new Button("2");
+        b3 = new Button("3");
+        b4 = new Button("4");
+        b5 = new Button("5");
+        b6 = new Button("6");
+        b7 = new Button("7");
+        b8 = new Button("8");
+        b9 = new Button("9");
+        bclear = new Button("C");
+        b0 = new Button("0");
+        bdiv = new Button("/");
+        badd = new Button("+");
+        bdiff = new Button("-");
+        bmul = new Button("x");
+        beq = new Button("=");
+
+        b7.setBounds(500, 170, 60, 50);
+        b8.setBounds(580, 170, 60, 50);
+        b9.setBounds(660, 170, 60, 50);
+        b4.setBounds(500, 235, 60, 50);
+        b5.setBounds(580, 235, 60, 50);
+        b6.setBounds(660, 235, 60, 50);
+        b1.setBounds(500, 300, 60, 50);
+        b2.setBounds(580, 300, 60, 50);
+        b3.setBounds(660, 300, 60, 50);
+
+        bclear.setBounds(500, 370, 60, 50);
+        b0.setBounds(580, 370, 60, 50);
+        bdiv.setBounds(660, 370, 60, 50);
+
+        badd.setBounds(740, 170, 70, 50);
+        bdiff.setBounds(740, 235, 70, 50);
+        bmul.setBounds(740, 300, 70, 50);
+        beq.setBounds(740, 370, 70, 50);
+
+        b1.setBackground(Color.BLACK);
+        b1.setForeground(Color.YELLOW);
+        b2.setBackground(Color.BLACK);
+        b2.setForeground(Color.YELLOW);
+        b3.setBackground(Color.BLACK);
+        b3.setForeground(Color.YELLOW);
+        b4.setBackground(Color.BLACK);
+        b4.setForeground(Color.YELLOW);
+        b5.setBackground(Color.BLACK);
+        b5.setForeground(Color.YELLOW);
+        b6.setBackground(Color.BLACK);
+        b6.setForeground(Color.YELLOW);
+        b7.setBackground(Color.BLACK);
+        b7.setForeground(Color.YELLOW);
+        b8.setBackground(Color.BLACK);
+        b8.setForeground(Color.YELLOW);
+        b9.setBackground(Color.BLACK);
+        b9.setForeground(Color.YELLOW);
+        b0.setBackground(Color.BLACK);
+        b0.setForeground(Color.YELLOW);
+
+        badd.setBackground(Color.ORANGE);
+        bdiff.setBackground(Color.ORANGE);
+        bmul.setBackground(Color.ORANGE);
+        bdiv.setBackground(Color.ORANGE);
+        beq.setBackground(Color.ORANGE);
+        bclear.setBackground(Color.MAGENTA);
+
+        b1.setFont(new Font("Roman", Font.BOLD, 20));
+        b2.setFont(new Font("Roman", Font.BOLD, 20));
+        b3.setFont(new Font("Roman", Font.BOLD, 20));
+        b4.setFont(new Font("Roman", Font.BOLD, 20));
+        b5.setFont(new Font("Roman", Font.BOLD, 20));
+        b6.setFont(new Font("Roman", Font.BOLD, 20));
+        b7.setFont(new Font("Roman", Font.BOLD, 20));
+        b8.setFont(new Font("Roman", Font.BOLD, 20));
+        b9.setFont(new Font("Roman", Font.BOLD, 20));
+        b0.setFont(new Font("Roman", Font.BOLD, 20));
+        badd.setFont(new Font("Roman", Font.BOLD, 35));
+        bdiff.setFont(new Font("Roman", Font.BOLD, 40));
+        bmul.setFont(new Font("Roman", Font.BOLD, 25));
+        bdiv.setFont(new Font("Roman", Font.BOLD, 35));
+        beq.setFont(new Font("Roman", Font.BOLD, 35));
+        bclear.setFont(new Font("Roman", Font.BOLD, 20));
+
+        c.add(b1);
+        c.add(b2);
+        c.add(b3);
+        c.add(b4);
+        c.add(b5);
+        c.add(b6);
+        c.add(b7);
+        c.add(b8);
+        c.add(b9);
+
+        c.add(bclear);
+        c.add(b0);
+        c.add(bdiv);
+
+        c.add(badd);
+        c.add(bdiff);
+        c.add(bmul);
+        c.add(beq);
+
+        b1.addActionListener(w);
+        b2.addActionListener(w);
+        b3.addActionListener(w);
+        b4.addActionListener(w);
+        b5.addActionListener(w);
+        b6.addActionListener(w);
+        b7.addActionListener(w);
+        b8.addActionListener(w);
+        b9.addActionListener(w);
+
+        badd.addActionListener(w);
+        bdiff.addActionListener(w);
+        bmul.addActionListener(w);
+        bdiv.addActionListener(w);
+        beq.addActionListener(w);
+        b0.addActionListener(w);
+        bclear.addActionListener(w);
+
+        frame.setVisible(true);
     }
+
 }
+public class work implements ActionListener {
+         Calculator cal = new Calculator();
+
+         int num1;
+         int num2;
+
+         boolean add = false;
+         boolean sub = false;
+         boolean product = false;
+         boolean div = false;
+
+    public void actionPerformed(ActionEvent e){
+        
+        int result;
+        String s1;
+        String[] parts;
+
+        if(e.getSource()==Calculator.b1){
+            Calculator.text.append("1");
+            return; 
+        }
+        else if(e.getSource()==Calculator.b2){
+            Calculator.text.append("2");
+            return;
+        }
+        else if(e.getSource()==Calculator.b3){
+            Calculator.text.append("3");
+            return;
+        }
+        else if(e.getSource()==Calculator.b4){
+            Calculator.text.append("4");
+            return;
+        }
+        else if(e.getSource()==Calculator.b5){
+            Calculator.text.append("5");
+            return;
+        }
+        else if(e.getSource()==Calculator.b6){
+            Calculator.text.append("6");
+            return;
+        }
+        else if(e.getSource()==Calculator.b7){
+            Calculator.text.append("7");
+            return;
+        }
+        else if(e.getSource()==Calculator.b8){
+            Calculator.text.append("8");
+            return;
+        }
+        else if(e.getSource()==Calculator.b9){
+            Calculator.text.append("9");
+            return;
+        }
+        else if(e.getSource()==Calculator.b0){
+            Calculator.text.append("0");
+            return;
+        }
+        else if(e.getSource()==Calculator.bclear){
+            Calculator.text.setText(null);
+            return;
+        }
+        else if(e.getSource()==Calculator.badd){
+            Calculator.text.append(" + ");
+            add = true;
+            s1 = Calculator.text.getText();
+            parts = s1.split("\\+");
+            num1 = Integer.parseInt(parts[0].trim());
+            return;
+
+        }
+        else if(e.getSource()==Calculator.bdiff){
+            Calculator.text.append(" - ");
+            sub = true;
+            s1 = Calculator.text.getText();
+            parts = s1.split("\\-");
+            num1 = Integer.parseInt(parts[0].trim());
+            return;
+
+
+        }
+        else if(e.getSource()==Calculator.bmul){
+            Calculator.text.append(" x ");
+            product = true;
+            s1 = Calculator.text.getText();
+            parts = s1.split("x");
+            num1 = Integer.parseInt(parts[0].trim());
+            return;
+
+        }
+        else if(e.getSource()==Calculator.bdiv){
+            Calculator.text.append(" / ");
+            div = true;
+            s1 = Calculator.text.getText();
+            parts = s1.split("\\ /");
+            num1 = Integer.parseInt(parts[0].trim());
+            return;
+
+        }
+        else if(e.getSource()==Calculator.beq){
+            Calculator.text.append(" = ");
+        
+        if(add == true){
+            s1 = Calculator.text.getText();
+            parts = s1.split("\\+|=");
+            num2 = Integer.parseInt(parts[1].trim());
+            result = num1 + num2;
+            Calculator.text.append(result + "");
+            return;                
+        }
+        else if(sub == true){
+            s1 = Calculator.text.getText();
+            parts = s1.split("-| =");
+            num2 = Integer.parseInt(parts[1].trim());
+            result = num1 - num2;
+            Calculator.text.append(result + "");
+            return;
+        }
+        else if(product == true){
+            s1 = Calculator.text.getText();
+            parts = s1.split("x|=");
+            num2 = Integer.parseInt(parts[1].trim());
+            result = num1 * num2;
+            Calculator.text.append(result + "");
+            return;
+        }
+        else if(div == true){
+            s1 = Calculator.text.getText();
+            parts = s1.split("\\/|=");
+            num2 = Integer.parseInt(parts[1].trim());
+            result = num1 / num2;
+            Calculator.text.append(result + "");
+            return;
+        }
+        
+            return;
+
+        }
+        return;
+
+    
+
+    }
+    
+    
+}
+
